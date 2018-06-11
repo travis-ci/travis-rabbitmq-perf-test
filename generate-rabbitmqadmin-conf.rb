@@ -3,7 +3,9 @@ require 'uri'
 
 CONFIG_FILENAME = File.expand_path('~/.rabbitmqadmin.conf')
 
-url = `heroku config:get CLOUDAMQP_URL`.chomp
+heroku_app = ARGV.shift || 'travis-rabbitmq-perf-test'
+
+url = `heroku config:get CLOUDAMQP_URL -a #{heroku_app}`.chomp
 unless $?.exitstatus == 0
   raise "heroku config:get CLOUDAMQP_URL failed with exit code #{$?.exitstatus}"
 end
@@ -13,8 +15,6 @@ if url == ''
 end
 
 uri = URI(url)
-
-puts uri
 
 config = <<-HEREDOC
 [default]
