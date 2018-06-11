@@ -13,6 +13,7 @@ heroku git:remote -a travis-rabbitmq-perf-test
 ```
 heroku buildpacks:add https://github.com/travis-ci/heroku-buildpack-run
 heroku buildpacks:add heroku/jvm
+heroku addons:create cloudamqp:bunny
 ```
 
 ## Run

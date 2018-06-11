@@ -1,1 +1,1 @@
-perftest: bin/runjava com.rabbitmq.perf.PerfTest
+perftest: ./perftest.sh
