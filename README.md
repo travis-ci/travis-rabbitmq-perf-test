@@ -27,9 +27,9 @@ heroku run -- perftest --help
 # default settings
 heroku run -- perftest
 
-# durable queue
+# durable queue (attempt to replicate prod)
 rabbitmqadmin declare queue name=perf_durable auto_delete=false durable=true
-heroku run -- perftest --flag persistent --predeclared --queue perf_durable
+heroku run -- perftest --flag persistent --predeclared --queue perf_durable --qos 500 --consumers 60 --rate 1500 --size 500
 ```
 
 ## Monitoring
