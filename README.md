@@ -14,14 +14,22 @@ heroku git:remote -a travis-rabbitmq-perf-test
 heroku buildpacks:add https://github.com/travis-ci/heroku-buildpack-run
 heroku buildpacks:add heroku/jvm
 heroku addons:create cloudamqp:bunny
-heroku addons:upgrade cloudamqp:rabbit
+heroku addons:upgrade cloudamqp:rabbit # larger plan needed for HA
 heroku addons:open CLOUDAMQP
+ruby generate-rabbitmqadmin-conf.rb
 ```
 
 ## Run
 
 ```
 heroku run -- perftest --help
+
+# default settings
+heroku run -- perftest
+
+# durable queue
+rabbitmqadmin declare queue name=perf_durable auto_delete=false durable=true
+heroku run -- perftest --flag persistent --predeclared --queue perf_durable
 ```
 
 ## Monitoring
