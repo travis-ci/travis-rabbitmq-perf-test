@@ -15,6 +15,10 @@ if [[ -n $QUEUE ]]; then
 fi
 
 if [[ $PRODUCER = 'true' ]]; then
+  if [[ -n $PRODUCER_EXCHANGE ]]; then
+    args+=(--exchange "$PRODUCER_EXCHANGE")
+  fi
+
   if [[ -n $PRODUCER_FLAG ]]; then
     args+=(--flag "$PRODUCER_FLAG")
   fi
