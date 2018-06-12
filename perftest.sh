@@ -35,6 +35,10 @@ if [[ $PRODUCER = 'true' ]]; then
     args+=(--rate "$PRODUCER_RATE")
   fi
 
+  if [[ $PRODUCER_RANDOM_ROUTING_KEY = 'true' ]]; then
+    args+=(--random-routing-key)
+  fi
+
   if [[ -n $PRODUCER_THREADS ]]; then
     args+=(--producers "$PRODUCER_THREADS")
   fi
