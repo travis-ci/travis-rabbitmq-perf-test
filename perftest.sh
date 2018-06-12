@@ -19,6 +19,8 @@ if [[ -n $EXCHANGE ]]; then
 fi
 
 if [[ $PRODUCER = 'true' ]]; then
+  args+=(--consumers 0)
+
   if [[ -n $PRODUCER_FLAG ]]; then
     args+=(--flag "$PRODUCER_FLAG")
   fi
@@ -49,6 +51,8 @@ if [[ $PRODUCER = 'true' ]]; then
 fi
 
 if [[ $CONSUMER = 'true' ]]; then
+  args+=(--producers 0)
+
   if [[ -n $CONSUMER_QOS ]]; then
     args+=(--qos "$CONSUMER_QOS")
   fi
