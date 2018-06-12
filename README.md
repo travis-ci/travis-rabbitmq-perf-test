@@ -14,7 +14,8 @@ heroku git:remote -a travis-rabbitmq-perf-test
 heroku buildpacks:add https://github.com/travis-ci/heroku-buildpack-run
 heroku buildpacks:add heroku/jvm
 heroku addons:create cloudamqp:bunny
-heroku addons:upgrade cloudamqp:rabbit # larger plan needed for HA
+heroku addons:upgrade cloudamqp:rabbit # larger plan needed for 2 node cluster
+# heroku addons:create cloudamqp:rabbit --nodes=3
 heroku addons:open CLOUDAMQP
 ruby generate-rabbitmqadmin-conf.rb
 ```
