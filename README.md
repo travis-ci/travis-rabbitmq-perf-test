@@ -33,9 +33,10 @@ rabbitmqadmin delete policy name=HA
 rabbitmqadmin declare policy name=ha pattern='^perf_ha$' definition='{"ha-mode":"all","ha-sync-mode":"automatic"}' apply-to=queues
 rabbitmqadmin declare policy name=lazy pattern='^perf_lazy$' definition='{"queue-mode":"lazy"}' apply-to=queues
 rabbitmqadmin declare policy name=ha-lazy pattern='^perf_ha_lazy$' definition='{"ha-mode":"all","ha-sync-mode":"automatic","queue-mode":"lazy"}' apply-to=queues
+rabbitmqadmin declare policy name=sharded pattern='^perf_sharded$' definition='{"shards-per-node":2}' apply-to=exchanges
 
 # exchanges
-rabbitmqadmin declare exchange name=sharded type=x-modulus-hash auto_delete=false durable=true arguments='{"shards-per-node":2}'
+rabbitmqadmin declare exchange name=perf_sharded type=x-modulus-hash auto_delete=false durable=true
 
 # queues
 rabbitmqadmin declare queue name=perf_default auto_delete=false durable=true

@@ -18,6 +18,10 @@ if [[ -n $EXCHANGE ]]; then
   args+=(--exchange "$EXCHANGE")
 fi
 
+if [[ $SKIP_BINDING_QUEUES = 'true' ]]; then
+  args+=(--skip-binding-queues)
+fi
+
 if [[ $PRODUCER = 'true' ]]; then
   args+=(--consumers 0)
 
