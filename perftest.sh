@@ -14,11 +14,11 @@ if [[ -n $QUEUE ]]; then
   args+=(--queue "$QUEUE")
 fi
 
-if [[ $PRODUCER = 'true' ]]; then
-  if [[ -n $PRODUCER_EXCHANGE ]]; then
-    args+=(--exchange "$PRODUCER_EXCHANGE")
-  fi
+if [[ -n $EXCHANGE ]]; then
+  args+=(--exchange "$EXCHANGE")
+fi
 
+if [[ $PRODUCER = 'true' ]]; then
   if [[ -n $PRODUCER_FLAG ]]; then
     args+=(--flag "$PRODUCER_FLAG")
   fi
