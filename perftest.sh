@@ -10,6 +10,10 @@ if [[ $PREDECLARED = 'true' ]]; then
   args+=(--predeclared)
 fi
 
+if [[ -n $QUEUE ]]; then
+  args+=(--queue "$QUEUE")
+fi
+
 if [[ $PRODUCER = 'true' ]]; then
   if [[ -n $PRODUCER_FLAG ]]; then
     args+=(--flag "$PRODUCER_FLAG")
@@ -17,10 +21,6 @@ if [[ $PRODUCER = 'true' ]]; then
 
   if [[ -n $PRODUCER_FLAG ]]; then
     args+=(--flag "$PRODUCER_FLAG")
-  fi
-
-  if [[ -n $PRODUCER_QUEUE ]]; then
-    args+=(--queue "$PRODUCER_QUEUE")
   fi
 
   if [[ -n $PRODUCER_MESSAGE_SIZE ]]; then
