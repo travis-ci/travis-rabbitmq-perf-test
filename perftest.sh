@@ -61,6 +61,10 @@ if [[ $CONSUMER = 'true' ]]; then
     args+=(--qos "$CONSUMER_QOS")
   fi
 
+  if [[ -n $CONSUMER_MULTI_ACK_EVERY ]]; then
+    args+=(--multi-ack-every "$CONSUMER_MULTI_ACK_EVERY")
+  fi
+
   if [[ -n $CONSUMER_THREADS ]]; then
     args+=(--consumers "$CONSUMER_THREADS")
   fi
