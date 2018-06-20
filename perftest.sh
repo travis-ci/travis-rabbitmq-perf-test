@@ -6,20 +6,22 @@ if [[ -n $CLOUDAMQP_URL ]]; then
   args+=(--uri "$CLOUDAMQP_URL")
 fi
 
-if [[ $PREDECLARED = 'true' ]]; then
-  args+=(--predeclared)
-fi
+if [[ $PRODUCER = 'true' ]] || [[ $CONSUMER = 'true' ]]; then
+  if [[ $PREDECLARED = 'true' ]]; then
+    args+=(--predeclared)
+  fi
 
-if [[ -n $QUEUE ]]; then
-  args+=(--queue "$QUEUE")
-fi
+  if [[ -n $QUEUE ]]; then
+    args+=(--queue "$QUEUE")
+  fi
 
-if [[ -n $EXCHANGE ]]; then
-  args+=(--exchange "$EXCHANGE")
-fi
+  if [[ -n $EXCHANGE ]]; then
+    args+=(--exchange "$EXCHANGE")
+  fi
 
-if [[ $SKIP_BINDING_QUEUES = 'true' ]]; then
-  args+=(--skip-binding-queues)
+  if [[ $SKIP_BINDING_QUEUES = 'true' ]]; then
+    args+=(--skip-binding-queues)
+  fi
 fi
 
 if [[ $PRODUCER = 'true' ]]; then
@@ -74,4 +76,4 @@ if [[ $CONSUMER = 'true' ]]; then
   fi
 fi
 
-bin/runjava com.rabbitmq.perf.PerfTest "${args[@]}" $*
+exec bin/runjava com.rabbitmq.perf.PerfTest "${args[@]}" $*
