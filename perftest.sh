@@ -31,10 +31,6 @@ if [[ $PRODUCER = 'true' ]]; then
     args+=(--flag "$PRODUCER_FLAG")
   fi
 
-  if [[ -n $PRODUCER_FLAG ]]; then
-    args+=(--flag "$PRODUCER_FLAG")
-  fi
-
   if [[ -n $PRODUCER_MESSAGE_SIZE ]]; then
     args+=(--size "$PRODUCER_MESSAGE_SIZE")
   fi
